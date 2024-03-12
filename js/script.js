@@ -21,8 +21,8 @@ const incrementScore = () => {
     currentScore += 10;
     score.innerText = currentScore;
 
-    if (currentScore % 100 === 0) {
-        timeoutValue = Math.max(0, timeoutValue - 50);
+    if (currentScore % 50 === 0) {
+        timeoutValue = Math.max(0, timeoutValue - 20);
     }
 };
 
@@ -163,6 +163,7 @@ const gameOver = () => {
     menu.style.display = "flex";
     finalScore.innerText = score.innerText;
     canvas.style.filter = "blur(2px)"
+    timeoutValue = 300
 };
 
 const gameLoop = () => {
