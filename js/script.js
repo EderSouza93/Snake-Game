@@ -5,6 +5,7 @@ const score = document.querySelector(".score--value");
 const finalScore = document.querySelector(".final-score > span");
 const menu = document.querySelector(".menu-screen");
 const buttonPlay = document.querySelector(".btn-play");
+let timeoutValue = 300;
 
 const audio = new Audio("../assets/audio.mp3");
 
@@ -16,7 +17,13 @@ const initialPosition = { x: 270, y: 240 }
 let snake = [initialPosition];
 
 const incrementScore = () => {
-    score.innerText = +score.innerText + 10
+    let currentScore = +score.innerText;
+    currentScore += 10;
+    score.innerText = currentScore;
+
+    if (currentScore % 100 === 0) {
+        timeoutValue = Math.max(0, timeoutValue - 50);
+    }
 };
 
 const randomNumber = (min, max) => {
@@ -171,7 +178,7 @@ const gameLoop = () => {
 
     loopId = setTimeout(() => {
         gameLoop()
-    }, 300)
+    }, timeoutValue)
 }
 
 gameLoop()
